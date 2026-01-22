@@ -38,7 +38,7 @@ AHotlineMiami3DCharacter::AHotlineMiami3DCharacter()
 	// Create a camera boom (pulls in towards the player if there is a collision)
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
-	CameraBoom->TargetArmLength = 4000.0f;
+	CameraBoom->TargetArmLength = 40.0f;
 	CameraBoom->bUsePawnControlRotation = true;
 
 	// Create a follow camera
@@ -97,14 +97,8 @@ void AHotlineMiami3DCharacter::Look(const FInputActionValue& Value)
 
 void AHotlineMiami3DCharacter::SetCamera()
 {
-	// set camera boom length and control rotation usage
-	CameraBoom->TargetArmLength = 4000.0f;
-	CameraBoom->bUsePawnControlRotation = false;
-
-	FollowCamera->bUsePawnControlRotation = false;
-
 	//set camera angle
-	FollowCamera->SetRelativeRotation(FRotator(-90.0f, 0.0f, 0.0f));
+	FollowCamera->SetWorldRotation(FRotator(0.0f, -90.0f, 0.0f));
 }
 
 void AHotlineMiami3DCharacter::Rotate(const FInputActionValue& Value)
@@ -142,6 +136,7 @@ void AHotlineMiami3DCharacter::DoLook(float Yaw, float Pitch)
 		// add yaw and pitch input to controller
 		AddControllerYawInput(Yaw);
 		AddControllerPitchInput(Pitch);
+		
 	}
 }
 
@@ -156,3 +151,4 @@ void AHotlineMiami3DCharacter::DoJumpEnd()
 	// signal the character to stop jumping
 	StopJumping();
 }
+
