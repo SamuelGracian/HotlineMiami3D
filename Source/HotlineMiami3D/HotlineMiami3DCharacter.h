@@ -94,8 +94,6 @@ public:
 	virtual void DoJumpEnd();
 
 
-	virtual void BeginPlay() override;
-
 public:
 
 	/** Returns CameraBoom subobject **/
