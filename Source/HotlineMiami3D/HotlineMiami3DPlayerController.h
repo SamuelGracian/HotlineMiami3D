@@ -49,4 +49,9 @@ protected:
 	/** Returns true if the player should use UMG touch controls */
 	bool ShouldUseTouchControls() const;
 
+	UFUNCTION(BlueprintCallable, category = "Input Mouse Controls")
+	void MouseController(); ///Change Name later
+
+private:
+	float m_mouseX, m_mouseY;
 };

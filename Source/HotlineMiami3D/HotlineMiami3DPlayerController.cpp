@@ -72,3 +72,21 @@ bool AHotlineMiami3DPlayerController::ShouldUseTouchControls() const
 	// are we on a mobile platform? Should we force touch?
 	return SVirtualJoystick::ShouldDisplayTouchInterface() || bForceTouchControls;
 }
+
+void AHotlineMiami3DPlayerController::MouseController()
+{
+
+	float ScreenX, ScreenY;
+
+	APlayerController* PC = GetWorld()->GetFirstPlayerController();
+
+	if (PC ->GetMousePosition(m_mouseX, m_mouseY))
+	{
+		FVector WorldLocation;
+		FVector WorldDirection;
+
+		bool bSucces = PC->DeprojectScreenPositionToWorld(ScreenX, ScreenY, WorldLocation, WorldDirection);
+
+
+	}
+}
