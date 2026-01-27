@@ -53,5 +53,6 @@ protected:
 	void MouseController(); ///Change Name later
 
 private:
-	float m_mouseX, m_mouseY;
+	float m_mouseX = 0.0f;
+	float m_mouseY = 0.0f;
 };
