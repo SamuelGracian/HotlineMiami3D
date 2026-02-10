@@ -1,10 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#pragma once
+#pragma once	
 #include "CoreMinimal.h"
-#include "GameFramework/Pawn.h"
-#include "Components/StaticMeshComponent.h"
-#include "TimerManager.h"
+#include"GameFamework/Pawn.h"
 #include "BaseWeapons.generated.h"
 
 UENUM(BlueprintType)
@@ -66,16 +64,8 @@ protected:
 
 	// --- Internal state ---
 	FTimerHandle TimerHandle_AutoFire;
-	FTimerHandle TimerHandle_Burst;
 
 	bool bWantsToFire = false;
-
-	// track reload state & burst shots used by .cpp
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapon")
-	bool bIsReloading = false;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapon")
-	int32 CurrentBurstShot = 0;
 
 protected:
 	// Called when the game starts or when spawned
@@ -83,11 +73,6 @@ protected:
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	// helpers used by the implementation
-	virtual FVector GetMuzzleLocation() const;
-	virtual FRotator GetMuzzleRotation() const;
-	virtual float GetFireIntervalSeconds() const;
 
 public:
 	// Input binding helpers
