@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "StaticMesh.generated.h"
+
 #include "BaseWeapons.generated.h"
 
 

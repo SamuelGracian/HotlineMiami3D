@@ -76,7 +76,8 @@ bool AHotlineMiami3DPlayerController::ShouldUseTouchControls() const
 void AHotlineMiami3DPlayerController::MouseController()
 {
 
-	float ScreenX, ScreenY;
+	float ScreenX = 0.0f;
+	float ScreenY = 0.0f;
 
 	APlayerController* PC = GetWorld()->GetFirstPlayerController();
 
