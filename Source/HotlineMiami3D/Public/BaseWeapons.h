@@ -2,7 +2,7 @@
 
 #pragma once	
 #include "CoreMinimal.h"
-#include"GameFamework/Pawn.h"
+
 #include "BaseWeapons.generated.h"
 
 UENUM(BlueprintType)
@@ -13,6 +13,14 @@ enum class EWeaponFiringMode : uint8
 	Melee		UMETA(DisplayName = "Melee")
 };
 
+
+UENUM (BlueprintType)
+enum class PickedUpState : uint8
+{
+	Enemy  UMETA(DisplayName = "Picked up by enemy"),
+	Floor  UMETA(DisplayName = "Weapon on floor"),
+	Player UMETA(DisplayName = "Picked up by player")
+};
 
 UCLASS(Blueprintable)
 class HOTLINEMIAMI3D_API ABaseWeapon : public APawn
@@ -67,6 +75,8 @@ protected:
 
 	bool bWantsToFire = false;
 
+	bool bIsReloading = false;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -97,8 +107,6 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Weapon|Events")
 	void OnWeaponFired();
 
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Weapon|Events")
-	void OnWeaponReloaded();
 
 protected:
 
@@ -107,5 +115,11 @@ protected:
 	virtual void PerformHit();
 
 	virtual void ConsumeAmmo();
+
+												
+	//utilities
+		// Utility
+	virtual FVector GetMuzzleLocation() const;
+	virtual FRotator GetMuzzleRotation() const;
 
 };

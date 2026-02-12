@@ -73,9 +73,7 @@ void ABaseWeapon::StartFire()
 	{
 	case EWeaponFiringMode::Automatic:
 	{
-		// start timer to repeatedly call HandleFire
-		float Interval = GetFireIntervalSeconds();
-		GetWorldTimerManager().SetTimer(TimerHandle_AutoFire, this, &ABaseWeapon::HandleFire, Interval, true, 0.0f);
+		GetWorldTimerManager().SetTimer(TimerHandle_AutoFire, this, &ABaseWeapon::HandleFire, 2.0f, true, 0.0f);
 		// Fire immediately
 		HandleFire();
 		break;
@@ -84,12 +82,6 @@ void ABaseWeapon::StartFire()
 	{
 
 		FireOnce();
-		break;
-	}
-	case EWeaponFiringMode::Burst:
-	{
-		CurrentBurstShot = 0;
-		HandleFire(); 
 		break;
 	}
 	case EWeaponFiringMode::Melee:
@@ -111,10 +103,6 @@ void ABaseWeapon::StopFire()
 		GetWorldTimerManager().ClearTimer(TimerHandle_AutoFire);
 	}
 
-	if (TimerHandle_Burst.IsValid())
-	{
-		GetWorldTimerManager().ClearTimer(TimerHandle_Burst);
-	}
 }
 
 void ABaseWeapon::FireOnce()
@@ -137,12 +125,6 @@ void ABaseWeapon::HandleFire()
 	if (FiringMode == EWeaponFiringMode::SemiAuto || FiringMode == EWeaponFiringMode::Melee)
 	{
 		return;
-	}
-
-	if (FiringMode == EWeaponFiringMode::Burst)
-	{
-		float Interval = GetFireIntervalSeconds();
-		GetWorldTimerManager().SetTimer(TimerHandle_Burst, this, &ABaseWeapon::HandleFire, Interval, false);
 	}
 }
 
@@ -191,13 +173,23 @@ void ABaseWeapon::ConsumeAmmo()
 	{
 		return;
 	}
-
+									  
 	if (CurrentAmmoInMagazine > 0)
 	{
 		--CurrentAmmoInMagazine;
 	}
 	else
-	{
+	{								 
 	}
 }
 
+FVector ABaseWeapon::GetMuzzleLocation() const
+{
+	return GetActorLocation();
+}
+						  
+
+FRotator ABaseWeapon::GetMuzzleRotation() const
+{
+	return GetActorRotation();
+}
