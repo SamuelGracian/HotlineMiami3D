@@ -5,11 +5,13 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
+#include "BaseWeapons.h"
 #include "HotlineMiami3DCharacter.generated.h"
 
 class USpringArmComponent;
 class UCameraComponent;
 class UInputAction;
+class ABaseWeapons;
 struct FInputActionValue;
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
@@ -61,6 +63,9 @@ protected:
 
 	/** Initialize input action bindings */
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
+	ABaseWeapon* CurrentWeapon;
 
 protected:
 
@@ -93,6 +98,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Input")
 	virtual void DoJumpEnd();
 
+	UFUNCTION(BlueprintCallable, Category = "Input")
+	void StartFire();
+
+	UFUNCTION(BlueprintCallable, Category = "Input")
+	void StopFire();
+
 
 public:
 
@@ -101,5 +112,7 @@ public:
 
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+
 };
 

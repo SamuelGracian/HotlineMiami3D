@@ -1,10 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BaseWeapons.h"
-#include "TimerManager.h"
-#include "Engine/World.h"
-#include "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"
+#include "Kismet/GameplayStatics.h"
+#include "Engine/World.h"
 
 ABaseWeapon::ABaseWeapon()
 {
@@ -27,6 +26,7 @@ ABaseWeapon::ABaseWeapon()
 void ABaseWeapon::BeginPlay()
 {
 	Super::BeginPlay();
+	CurrentAmmoInMagazine = MagazineSize;
 }
 
 void ABaseWeapon::Tick(float DeltaTime)
@@ -185,11 +185,27 @@ void ABaseWeapon::ConsumeAmmo()
 
 FVector ABaseWeapon::GetMuzzleLocation() const
 {
+	if (MeshComponent)
+	{
+		// Puedes usar un socket llamado "Muzzle" en tu mesh
+		if (MeshComponent->DoesSocketExist(FName("Muzzle")))
+		{
+			return MeshComponent->GetSocketLocation(FName("Muzzle"));
+		}
+		return MeshComponent->GetComponentLocation();
+	}
 	return GetActorLocation();
 }
-						  
 
 FRotator ABaseWeapon::GetMuzzleRotation() const
 {
+	if (MeshComponent)
+	{
+		if (MeshComponent->DoesSocketExist(FName("Muzzle")))
+		{
+			return MeshComponent->GetSocketRotation(FName("Muzzle"));
+		}
+		return MeshComponent->GetComponentRotation();
+	}
 	return GetActorRotation();
 }

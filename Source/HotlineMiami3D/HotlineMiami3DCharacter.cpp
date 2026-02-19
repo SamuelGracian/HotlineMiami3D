@@ -11,6 +11,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 #include "HotlineMiami3D.h"
+#include "BaseWeapons.h"
 
 AHotlineMiami3DCharacter::AHotlineMiami3DCharacter()
 {
@@ -150,5 +151,21 @@ void AHotlineMiami3DCharacter::DoJumpEnd()
 {
 	// signal the character to stop jumping
 	StopJumping();
+}
+
+void AHotlineMiami3DCharacter::StartFire()
+{
+    if (CurrentWeapon)
+    {
+		CurrentWeapon->StartFire();
+    }
+}
+
+void AHotlineMiami3DCharacter::StopFire()
+{
+    if (CurrentWeapon)
+    {
+        CurrentWeapon->StopFire();
+    }
 }
 
