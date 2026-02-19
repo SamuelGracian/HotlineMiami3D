@@ -31,43 +31,43 @@ public:
 
 protected:
 	// --- Components / internal fields required by .cpp ---
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapon")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapon Stas")
 	UStaticMeshComponent* MeshComponent = nullptr;
 
 	// --- Configurable properties ---
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon Stats")
 	EWeaponFiringMode FiringMode = EWeaponFiringMode::SemiAuto;
 
-	// Rounds per minute
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon|Ranged", meta = (ClampMin = "1.0"))
-	float RateOfFireRPM = 600.0f;
-
 	// Weapon stats
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon Stats")
 	int32 MagazineSize = 30;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapon")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapon Stats")
 	int32 CurrentAmmoInMagazine = 30;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon Stats")
 	bool bInfiniteAmmo = false;
 
+	// Rounds per minute
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon Stats|Ranged", meta = (ClampMin = "1.0"))
+	float RateOfFireRPM = 600.0f;
+
 	// Damage, range and spread
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon|Ranged")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon Stats|Ranged")
 	float Damage = 25.0f;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon|Ranged")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon Stats|Ranged")
 	float Range = 10000.0f;
 
 	// Spread in degrees used by PerformHit()
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon|Ranged")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon Stats|Ranged")
 	float SpreadDegrees = 1.0f;
 
 	// Melee stats
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon|Melee")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon Stats|Melee")
 	float MeleeRange = 150.0f;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon|Melee")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon Stats|Melee")
 	float MeleeDamage = 40.0f;
 
 	// --- Internal state ---
