@@ -11,7 +11,7 @@
 class USpringArmComponent;
 class UCameraComponent;
 class UInputAction;
-class ABaseWeapons;
+class ABaseWeapon;
 struct FInputActionValue;
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
@@ -97,6 +97,12 @@ public:
 	/** Handles jump pressed inputs from either controls or UI interfaces */
 	UFUNCTION(BlueprintCallable, Category="Input")
 	virtual void DoJumpEnd();
+
+
+	//weapon functions
+
+    UFUNCTION(BlueprintCallable, Category = "Weapon")
+    void PickupWeapon(ABaseWeapon* Weapon);
 
 	UFUNCTION(BlueprintCallable, Category = "Input")
 	void StartFire();
