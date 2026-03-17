@@ -77,6 +77,9 @@ protected:
 	// --- Internal state ---
 	FTimerHandle TimerHandle_AutoFire;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon state")
+	bool CanPickUp = true;
+
 	bool bWantsToFire = false;
 
 	bool bIsReloading = false;
@@ -111,8 +114,6 @@ public:
 	void OnWeaponFired();
 
 
-    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Weapon|Events")
-    void OnWeaponEquiped(ACharacter* newOwner);
 
 protected:
 

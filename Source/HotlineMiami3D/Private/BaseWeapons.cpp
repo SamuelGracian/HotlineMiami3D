@@ -106,12 +106,6 @@ void ABaseWeapon::FireOnce()
 	HandleFire();
 }
 
-void ABaseWeapon::OnWeaponEquiped(ACharacter* newOwner)
-{
-    ///SetOwner(static_cast<AActor*>(newOwner));
-
-   /// AttachToComponent(newOwner->GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, FName("WeaponSocket"));
-}
 
 void ABaseWeapon::HandleFire()
 {
