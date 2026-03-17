@@ -5,29 +5,30 @@
 
 #include "BaseWeapons.generated.h"
 
-UENUM(BlueprintType)
-enum class EWeaponFiringMode : uint8
-{
-	Automatic	UMETA(DisplayName = "Automatic"),
-	SemiAuto	UMETA(DisplayName = "Semi-Automatic"),
-	Melee		UMETA(DisplayName = "Melee")
-};
+	UENUM(BlueprintType)
+	enum class EWeaponFiringMode : uint8
+	{
+		Automatic	UMETA(DisplayName = "Automatic"),
+		SemiAuto	UMETA(DisplayName = "Semi-Automatic"),
+		Melee		UMETA(DisplayName = "Melee")
+	};
 
 
-UENUM (BlueprintType)
-enum class PickedUpState : uint8
-{
-	Enemy  UMETA(DisplayName = "Picked up by enemy"),
-	Floor  UMETA(DisplayName = "Weapon on floor"),
-	Player UMETA(DisplayName = "Picked up by player")
-};
+	UENUM (BlueprintType)
+	enum class PickedUpState : uint8
+	{
+		Enemy  UMETA(DisplayName = "Picked up by enemy"),
+		Floor  UMETA(DisplayName = "Weapon on floor"),
+		Player UMETA(DisplayName = "Picked up by player")
+	};
 
-UCLASS(Blueprintable)
-class HOTLINEMIAMI3D_API ABaseWeapon : public APawn
-{
-public:
-	GENERATED_BODY()
-	ABaseWeapon();
+	UCLASS(Blueprintable)
+	class HOTLINEMIAMI3D_API ABaseWeapon : public AActor
+
+	{
+	public:
+		GENERATED_BODY()
+		ABaseWeapon();
 
 protected:
 	// --- Components / internal fields required by .cpp ---
@@ -70,6 +71,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon Stats|Melee")
 	float MeleeDamage = 40.0f;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon State")
+    PickedUpState CurrentPickedUpState = PickedUpState::Floor;
+
 	// --- Internal state ---
 	FTimerHandle TimerHandle_AutoFire;
 
@@ -85,8 +89,7 @@ protected:
 	virtual void Tick(float DeltaTime) override;
 
 public:
-	// Input binding helpers
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
 
 	// API
 	UFUNCTION(BlueprintCallable, Category = "Weapon")
@@ -107,6 +110,9 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Weapon|Events")
 	void OnWeaponFired();
 
+
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Weapon|Events")
+    void OnWeaponEquiped(ACharacter* newOwner);
 
 protected:
 

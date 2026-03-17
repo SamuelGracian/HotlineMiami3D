@@ -34,12 +34,6 @@ void ABaseWeapon::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void ABaseWeapon::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-}
-
-
 bool ABaseWeapon::CanFire() const
 {
 	if (bIsReloading)
@@ -110,6 +104,13 @@ void ABaseWeapon::FireOnce()
 	if (!CanFire()) return;
 
 	HandleFire();
+}
+
+void ABaseWeapon::OnWeaponEquiped(ACharacter* newOwner)
+{
+    ///SetOwner(static_cast<AActor*>(newOwner));
+
+   /// AttachToComponent(newOwner->GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, FName("WeaponSocket"));
 }
 
 void ABaseWeapon::HandleFire()

@@ -4,10 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "BaseWeapons.h"
 #include "BaseEnemy.generated.h"
 
+class ABaseWeapon;
+
 UCLASS()
-class HOTLINEMIAMI3D_API ABaseEnemy : public APawn
+class HOTLINEMIAMI3D_API ABaseEnemy : public APawn 
 {
 	GENERATED_BODY()
 
@@ -19,11 +22,19 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UFUNCTION(BlueprintCallable, Category = "Weapon")
+	void EquipWeapon(ABaseWeapon* Weapon);
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+protected:
+	UPROPERTY(EditAnywhere ,BlueprintReadWrite, Category = "Equiped Weapon")
+    ABaseWeapon* CurrentWeapon = nullptr;
+
 
 };

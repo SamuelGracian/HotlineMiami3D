@@ -102,7 +102,7 @@ public:
 	//weapon functions
 
     UFUNCTION(BlueprintCallable, Category = "Weapon")
-    void PickupWeapon(ABaseWeapon* Weapon);
+    void EquipWeapon(ABaseWeapon* Weapon);
 
 	UFUNCTION(BlueprintCallable, Category = "Input")
 	void StartFire();

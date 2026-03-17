@@ -153,23 +153,21 @@ void AHotlineMiami3DCharacter::DoJumpEnd()
 	StopJumping();
 }
 
-void AHotlineMiami3DCharacter::PickupWeapon(ABaseWeapon* Weapon)
+void AHotlineMiami3DCharacter::EquipWeapon(ABaseWeapon* Weapon)
 {
+	CurrentWeapon = Weapon;
 }
 
 void AHotlineMiami3DCharacter::StartFire()
 {
     if (CurrentWeapon)
     {
-		CurrentWeapon->StartFire();
+        
     }
 }
 
 void AHotlineMiami3DCharacter::StopFire()
 {
-    if (CurrentWeapon)
-    {
-        CurrentWeapon->StopFire();
-    }
+   
 }
 
