@@ -51,7 +51,7 @@ protected:
 
 	// Rounds per minute
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon Stats|Ranged", meta = (ClampMin = "1.0"))
-	float RateOfFireRPM = 600.0f;
+	float FireRate = 0.5f;
 
 	// Damage, range and spread
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon Stats|Ranged")
@@ -112,8 +112,6 @@ public:
 	// Blueprint events
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Weapon|Events")
 	void OnWeaponFired();
-
-
 
 protected:
 

@@ -63,9 +63,7 @@ protected:
 
 	/** Initialize input action bindings */
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
-	ABaseWeapon* CurrentWeapon;
+
 
 protected:
 
