@@ -33,5 +33,10 @@ protected:
 	UPROPERTY(EditAnywhere ,BlueprintReadWrite, Category = "Equiped Weapon")
     ABaseWeapon* CurrentWeapon = nullptr;
 
+	UPROPERTY(EditAnywhere, Category = "Enemy stats")
+	int CurrentHealth;
+
+	UPROPERTY(EditAnywhere, Category = "Enemy stats")
+	int MaxHealth;
 
 };

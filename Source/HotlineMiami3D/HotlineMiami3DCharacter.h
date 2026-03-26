@@ -54,6 +54,12 @@ protected:
 	UPROPERTY(EditAnywhere, Category="Input")
 	UInputAction* MouseRotate;
 
+	UPROPERTY(EditAnywhere, Category = "Player stats")
+	int CurrentHealth;
+
+	UPROPERTY(EditAnywhere, Category = "Player stats")
+	int MaxHealth;
+
 public:
 
 	/** Constructor */
