@@ -84,6 +84,9 @@ protected:
 
 	void Rotate(const FInputActionValue& Value);
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon")
+	ABaseWeapon* CurrentWeapon;
+
 public:
 
 	/** Handles move inputs from either controls or UI interfaces */
